@@ -1,0 +1,3 @@
+#cloud-config
+password: kubevirt
+chpasswd: { expire: False }
