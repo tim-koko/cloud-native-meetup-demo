@@ -1,9 +1,11 @@
 # Cloud Native Meetup Bern Demo
 
-Setup
+## Setup
+
 ```sh
 git clone https://github.com/tim-koko/kubevirt-demo.git
 ```
+
 
 1. Create cloud init secret
 
@@ -29,6 +31,7 @@ virtctl start cloud-native-meetup-vm --namespace=$USER
 ```sh
 virtctl console cloud-native-meetup-vm --namespace=$USER
 ```
+execute curl to verify the running nginx
 
 1. create networking
 
@@ -36,7 +39,20 @@ virtctl console cloud-native-meetup-vm --namespace=$USER
 kubectl apply -f kubevirt-demo/cloud-native-meetup/svc-ingress.yaml --namespace=$USER
 ```
 
+1. live migrate a vm from one node to an other
 
+Terminal 1
+```sh
+while true; do sleep 1; curl --max-time 1 --connect-timeout 0.1 https://cloudnative-meetup.training.cluster.acend.ch/; echo ""; done
+```
+
+Terminal 2
+```sh
+virtctl migrate cloud-native-meetup-vm --namespace=$USER
+```
+```sh
+kubectl get vmi -w --namespace=$USER
+```
 
 ## reset
 

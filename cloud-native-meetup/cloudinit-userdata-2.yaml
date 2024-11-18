@@ -44,10 +44,7 @@ write_files:
               }
 
               location / {
-                set $response 'Hello Cloud Native Meetup ${hostname}\n';
-                set $response '${response}GMT time:   $date_gmt\n';
-                set $response '${response}Local time: $date_local\n';
-
+                set $response 'Hello Cloud Native Meetup ${hostname}($date_local) ';
                 return 200 '${response}';
               }
           }
