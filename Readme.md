@@ -43,7 +43,7 @@ kubectl apply -f kubevirt-demo/cloud-native-meetup/svc-ingress.yaml --namespace=
 
 Terminal 1
 ```sh
-while true; do sleep 1; curl --max-time 1 --connect-timeout 0.1 https://cloudnative-meetup.training.cluster.acend.ch/; echo ""; done
+while true; do sleep 1; echo -n `date +"[%T]-"`; curl --max-time 1 --connect-timeout 0.8 https://cloudnative-meetup.training.cluster.acend.ch/; echo ""; done
 ```
 
 Terminal 2
