@@ -32,7 +32,7 @@ write_files:
           default_type        text/plain;
 
           server {
-              listen       80;
+              listen       8080;
               server_name  _;
               root         /usr/share/nginx/html;
 
@@ -44,7 +44,7 @@ write_files:
               }
 
               location / {
-                set $response 'Hello Cloud Native Meetup on (${hostname})';
+                set $response 'Hallo Bärn (${hostname})';
                 return 200 '${response}';
               }
           }

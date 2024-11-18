@@ -1,13 +1,13 @@
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
-  name: cloud-native-meetup-vm
+  name: fedora-vm
 spec:
   running: false
   template:
     metadata:
       labels:
-        kubevirt.io/domain: cloud-native-meetup-vm
+        kubevirt.io/domain: fedora-vm
     spec:
       domain:
         devices:
@@ -39,4 +39,4 @@ spec:
         - name: cloudinitdisk
           cloudInitNoCloud:
             secretRef:
-              name: cloud-native-meetup
+              name: fedora-vm
