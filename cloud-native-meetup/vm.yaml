@@ -39,4 +39,4 @@ spec:
         - name: cloudinitdisk
           cloudInitNoCloud:
             secretRef:
-              name: cloud-native-meetup-vm
+              name: cloud-native-meetup
