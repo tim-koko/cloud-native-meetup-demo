@@ -44,7 +44,7 @@ write_files:
               }
 
               location / {
-                set $response 'Hallo Bärn (${hostname})';
+                set $response 'Hallo Meetup (${hostname})';
                 return 200 '${response}';
               }
           }
