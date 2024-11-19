@@ -9,10 +9,19 @@ git clone https://github.com/tim-koko/kubevirt-demo.git
 1. Create the artefacts before the presentation and only start and observe them
 
 ```sh
-kubectl create secret generic fedora-vm --from-file=userdata=kubevirt-demo/cloud-native-meetup/cloudinit-userdata-2.yaml --namespace=$USER
+kubectl create secret generic fedora-vm --from-file=userdata=kubevirt-demo/cloud-native-meetup/cloudinit-userdata.yaml --namespace=$USER
 kubectl apply -f kubevirt-demo/cloud-native-meetup/svc-ingress.yaml --namespace=$USER
 kubectl apply -f kubevirt-demo/cloud-native-meetup/vm.yaml --namespace=$USER
 ```
+
+1. Create backup ns where everything is running already
+```sh
+kubectl create ns kubevirt-demo-backup
+kubectl create secret generic fedora-vm-2 --from-file=userdata=kubevirt-demo/cloud-native-meetup/backup/cloudinit-userdata.yaml --namespace=kubevirt-demo-backup
+kubectl apply -f kubevirt-demo/cloud-native-meetup/backup/svc-ingress.yaml --namespace=kubevirt-demo-backup
+kubectl apply -f kubevirt-demo/cloud-native-meetup/backup/vm.yaml --namespace=kubevirt-demo-backup
+```
+
 
 ## Demo
 
@@ -38,10 +47,19 @@ Terminal 1
 while true; do sleep 1; echo -n `date +"[%H:%M:%S,%3N] "`; echo -n " "; curl --max-time 1 --connect-timeout 0.8 https://cloudnative-meetup.training.cluster.acend.ch/; echo ""; done
 ```
 
+```sh Backup
+while true; do sleep 1; echo -n `date +"[%H:%M:%S,%3N] "`; echo -n " "; curl --max-time 1 --connect-timeout 0.8 https://cloudnative-meetup-backup.training.cluster.acend.ch/; echo ""; done
+```
+
 Terminal 2
 ```sh
 virtctl migrate vm --namespace=$USER
 kubectl get vmi -w --namespace=$USER
+```
+
+```sh Backup
+virtctl migrate vm --namespace=kubevirt-demo-backup
+kubectl get vmi -w --namespace=kubevirt-demo-backup
 ```
 
 ## reset
