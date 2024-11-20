@@ -70,3 +70,11 @@ kubectl delete secret fedora-vm  --namespace=$USER
 kubectl delete -f kubevirt-demo/cloud-native-meetup/vm.yaml --namespace=$USER
 kubectl delete -f kubevirt-demo/cloud-native-meetup/svc-ingress.yaml --namespace=$USER
 ```
+
+
+```sh Backup
+
+kubectl delete secret fedora-vm-2  --namespace=kubevirt-demo-backup
+kubectl delete -f kubevirt-demo/cloud-native-meetup/backup/vm.yaml --namespace=kubevirt-demo-backup
+kubectl delete -f kubevirt-demo/cloud-native-meetup/backup/svc-ingress.yaml --namespace=kubevirt-demo-backup
+```
