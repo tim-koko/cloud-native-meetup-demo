@@ -37,6 +37,8 @@ virtctl start fedora-vm --namespace=$USER
 ```sh
 virtctl console fedora-vm --namespace=$USER
 ```
+* Login: fedora, kubevirt
+* show the running nginx service
 * execute curl to verify the running nginx
 * explore the service and ingress
 
