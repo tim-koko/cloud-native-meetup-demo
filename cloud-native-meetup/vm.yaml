@@ -24,6 +24,20 @@ spec:
         resources:
           requests:
             memory: 2Gi
+      livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 20
+        httpGet:
+          port: 8080
+        timeoutSeconds: 10
+      readinessProbe:
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        timeoutSeconds: 5
+        httpGet:
+          port: 8080
+        failureThreshold: 10
+        successThreshold: 1
       networks:
       - name: default
         pod: {}
